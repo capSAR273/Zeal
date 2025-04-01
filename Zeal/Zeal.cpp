@@ -20,7 +20,7 @@ static void mem_check(int line_number = 0) {
 			ZEAL_VERSION, ZEAL_BUILD_VERSION, line_number, result1 * 2 + result2);
 		MessageBoxA(NULL, message.c_str(),
 			"Zeal heap monitor", MB_OK | MB_ICONERROR);
-		throw std::bad_alloc();  // Will crash out the program.
+		//throw std::bad_alloc();  // Will crash out the program.
 	}
 }
 
