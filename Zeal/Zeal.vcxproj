@@ -60,6 +60,10 @@
       <AdditionalDependencies>winmm.lib;Dbghelp.lib;legacy_stdio_definitions.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
     </Link>
+    <PostBuildEvent>
+      <Command>copy /Y "$(TargetDir)" "E:\TAKPv22\"
+xcopy "$(SolutionDir)Zeal\uifiles\*.*" "E:\TAKPv22\uifiles\" /Y /E /I</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="alarm.h" />

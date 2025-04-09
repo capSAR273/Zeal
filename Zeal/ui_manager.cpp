@@ -350,33 +350,36 @@ std::wstring string_to_wstring(const std::string& str)
 
 void ui_manager::RemoveTemporaryUI(const std::string& file_path)
 {
-	try
-	{
-		std::wstring wide_file_path = string_to_wstring(file_path + "EQUI_Zeal.xml");
+    try
+    {
+        std::wstring wide_file_path = string_to_wstring(file_path + "EQUI_Zeal.xml");
+        std::filesystem::path new_file_path = wide_file_path;
 
-		std::filesystem::path new_file_path = wide_file_path;
-		if (std::filesystem::exists(new_file_path))
-		{
-			std::filesystem::remove(new_file_path);
-			Zeal::EqGame::print_debug("Successfully removed file: %s", file_path.c_str());
-		}
-		else
-		{
-			Zeal::EqGame::print_debug("File does not exist: %s", file_path.c_str());
-		}
-	}
-	catch (const std::filesystem::filesystem_error& e)
-	{
-		Zeal::EqGame::print_debug("Filesystem error: %s", e.what());
-	}
-	catch (const std::exception& e)
-	{
-		Zeal::EqGame::print_debug("Exception: %s", e.what());
-	}
-	catch (...)
-	{
-		Zeal::EqGame::print_debug("Unknown error occurred while removing file: %s", (file_path + "EQUI_Zeal.xml").c_str());
-	}
+        Zeal::EqGame::print_debug("Attempting to remove file: %s", file_path.c_str());
+
+        if (std::filesystem::exists(new_file_path))
+        {
+            Zeal::EqGame::print_debug("File exists: %s", file_path.c_str());
+            std::filesystem::remove(new_file_path);
+            Zeal::EqGame::print_debug("Successfully removed file: %s", file_path.c_str());
+        }
+        else
+        {
+            Zeal::EqGame::print_debug("File does not exist: %s", file_path.c_str());
+        }
+    }
+    catch (const std::filesystem::filesystem_error& e)
+    {
+        Zeal::EqGame::print_debug("Filesystem error while removing file: %s, error: %s", file_path.c_str(), e.what());
+    }
+    catch (const std::exception& e)
+    {
+        Zeal::EqGame::print_debug("Exception while removing file: %s, error: %s", file_path.c_str(), e.what());
+    }
+    catch (...)
+    {
+        Zeal::EqGame::print_debug("Unknown error occurred while removing file: %s", (file_path + "EQUI_Zeal.xml").c_str());
+    }
 }
 void __fastcall LoadSidlHk(void* t, int unused, Zeal::EqUI::CXSTR path1, Zeal::EqUI::CXSTR path2, Zeal::EqUI::CXSTR filename)
 {
