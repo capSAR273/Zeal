@@ -32,6 +32,7 @@ from the repo using github actions, providing full transparency on the contents.
    - Ignore the `Source code` files
 2. Quit Everquest and extract the zip file contents into your EQ game root directory
    - Key required files are the `zeal.asi` and the `uifiles/zeal` folder
+   - If you have previously installed zeal, deleting the old `uifiles/zeal` is recommended before copying over
 3. Recommended: Install a UI skin modified with the extra Zeal UI functionality
    such as mana gauges, experience per hour, loot all / link buttons, etc.
    - If the UI is not updated, there will be some XML error complaints that can be ignored
@@ -151,11 +152,19 @@ ___
   - **Arguments:** none (pastes into active chat) or `rs` (rsay), `gs` (gsay), `gu` (guildsay), `ooc`, `auc`, `say`
   - **Description:** prints item links if looting window is open. The argument options route directly to channel for macros.
 
+- `/log`
+  - **Arguments:** `on`, `off`, `output text message with percent converts`
+  - **Description:** if first argument is not `on` or `off`, it copies the rest of line to the log directly.
+
 - `/lootall`
   - **Description:** loots all items from a corpse if looting window is open.
 
+- `/lootctrl`
+  - **Arguments:** none (toggles), `on`, `off`
+  - **Description:** controls the requirement to hold ctrl down to enable right click looting
+
 - `/lootlast`
-  - **Arguments:** `item_id_#`, `item_link`, or `0` to disable_
+  - **Arguments:** `item_id_#`, `item_link`, or `0` to disable.
   - **Description:** specifies an item ID that will be left as the last item when using /lootall on your corpse 
  
 - `/melody`
@@ -168,7 +177,12 @@ ___
   - **Arguments:** `on`, `off`, `size`, `alignment`, `marker`, `background`, `zoom`, `poi`, `labels`, `level`, `ring`, `grid`
   - **Example:** See In-game map section below
   - **Description:** controls map enable, size, labels, zoom, and markers
-    
+
+- `/mystats`
+  - **Arguments:** `none`, `info`, `<item_link>`
+  - **Example:** `/mystats <item_link>` Prints out your current offensive stats if you were holding that item.
+  - **Description:** prints out current stats values (mitigation, avoidance, offense, etc)
+
 - `/pandelay`
   - **Arguments:** `ms delay`, `none`
   - **Example:** `/pandelay 200`
@@ -685,11 +699,13 @@ are colored orange.
 #### Map ring
 A simple distance ring around the current position is available. The distance can be auto-set
 based on the tracking skill for rangers, druids, and bards, so they can simply toggle the ring
-on and off with `/map ring`.
+on and off with `/map ring` (or explicitly on or off with `ring on` or `ring off`).
 
 * Command examples:
   - `/map ring` if visible or a non-tracker, turns ring off
   - `/map ring` if not visible, sets the ring at max tracking distance per skill level
+  - `/map ring on` sets the ring at max tracking distance per skill level
+  - `/map ring off` turns ring off
   - `/map ring 500` sets the ring around the player at a distance of 500 (all classes)
 
 #### Showing group and raid members

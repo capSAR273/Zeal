@@ -386,6 +386,7 @@ void ui_options::InitGeneral()
 	ui->AddCheckboxCallback(wnd, "Zeal_SingleClickGiveEnable",  [](Zeal::EqUI::BasicWnd* wnd) { ZealService::get_instance()->give->setting_enable_give.set(wnd->Checked); });
 
 	ui->AddCheckboxCallback(wnd, "Zeal_LinkAllAltDelimiter",    [](Zeal::EqUI::BasicWnd* wnd) { ZealService::get_instance()->looting_hook->setting_alt_delimiter.set(wnd->Checked); });
+	ui->AddCheckboxCallback(wnd, "Zeal_CtrlRightClickCorpse",   [](Zeal::EqUI::BasicWnd* wnd) { ZealService::get_instance()->looting_hook->setting_ctrl_rightclick_loot.set(wnd->Checked); });
 	ui->AddCheckboxCallback(wnd, "Zeal_EnableContainerLock",    [](Zeal::EqUI::BasicWnd* wnd) { ZealService::get_instance()->ui->options->setting_enable_container_lock.set(wnd->Checked); });
 	ui->AddCheckboxCallback(wnd, "Zeal_ExportOnCamp",           [](Zeal::EqUI::BasicWnd* wnd) { ZealService::get_instance()->outputfile->setting_export_on_camp.set(wnd->Checked); });
 	ui->AddCheckboxCallback(wnd, "Zeal_SelfClickThru",          [](Zeal::EqUI::BasicWnd* wnd) { ZealService::get_instance()->camera_mods->setting_selfclickthru.set(wnd->Checked); });
@@ -443,6 +444,7 @@ void ui_options::InitFloatingDamage()
 	if (!wnd)
 		return;
 	ui->AddCheckboxCallback(wnd, "Zeal_FloatingDamage", [](Zeal::EqUI::BasicWnd* wnd) { ZealService::get_instance()->floating_damage->enabled.set(wnd->Checked); });
+	ui->AddCheckboxCallback(wnd, "Zeal_FloatingHideWithGui", [](Zeal::EqUI::BasicWnd* wnd) { ZealService::get_instance()->floating_damage->hide_with_gui.set(wnd->Checked); });
 	ui->AddCheckboxCallback(wnd, "Zeal_FloatingSelf", [](Zeal::EqUI::BasicWnd* wnd) { ZealService::get_instance()->floating_damage->show_self.set(wnd->Checked); });
 	ui->AddCheckboxCallback(wnd, "Zeal_FloatingPets", [](Zeal::EqUI::BasicWnd* wnd) { ZealService::get_instance()->floating_damage->show_pets.set(wnd->Checked); });
 	ui->AddCheckboxCallback(wnd, "Zeal_FloatingOthers", [](Zeal::EqUI::BasicWnd* wnd) { ZealService::get_instance()->floating_damage->show_others.set(wnd->Checked); });
@@ -567,6 +569,7 @@ void ui_options::InitTargetRing()
 	ui->AddLabel(wnd, "Zeal_TargetRingTransparency_Value");
 
 	ui->AddCheckboxCallback(wnd, "Zeal_TargetRing", [](Zeal::EqUI::BasicWnd* wnd) {ZealService::get_instance()->target_ring->enabled.set(wnd->Checked); });
+	ui->AddCheckboxCallback(wnd, "Zeal_TargetRingHideWithGui", [](Zeal::EqUI::BasicWnd* wnd) { ZealService::get_instance()->target_ring->hide_with_gui.set(wnd->Checked); });
 	ui->AddCheckboxCallback(wnd, "Zeal_TargetRingDisableForSelf", [](Zeal::EqUI::BasicWnd* wnd) {ZealService::get_instance()->target_ring->disable_for_self.set(wnd->Checked); });
 	ui->AddCheckboxCallback(wnd, "Zeal_TargetRingAttackIndicator", [](Zeal::EqUI::BasicWnd* wnd) {ZealService::get_instance()->target_ring->attack_indicator.set(wnd->Checked); });
 	ui->AddCheckboxCallback(wnd, "Zeal_TargetRingForward", [](Zeal::EqUI::BasicWnd* wnd) {ZealService::get_instance()->target_ring->rotate_match_heading.set(wnd->Checked); });
@@ -702,6 +705,7 @@ void ui_options::UpdateOptionsGeneral()
 	ui->SetChecked("Zeal_TellWindows", ZealService::get_instance()->tells->enabled);
 	ui->SetChecked("Zeal_TellWindowsHist", ZealService::get_instance()->tells->hist_enabled);
 	ui->SetChecked("Zeal_LinkAllAltDelimiter", ZealService::get_instance()->looting_hook->setting_alt_delimiter.get());
+	ui->SetChecked("Zeal_CtrlRightClickCorpse", ZealService::get_instance()->looting_hook->setting_ctrl_rightclick_loot.get());
 	ui->SetChecked("Zeal_EnableContainerLock", ZealService::get_instance()->ui->options->setting_enable_container_lock.get());
 	ui->SetChecked("Zeal_ExportOnCamp", ZealService::get_instance()->outputfile->setting_export_on_camp.get());
 	ui->SetChecked("Zeal_SelfClickThru", ZealService::get_instance()->camera_mods->setting_selfclickthru.get());
